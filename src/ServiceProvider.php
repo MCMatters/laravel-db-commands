@@ -25,7 +25,9 @@ class ServiceProvider extends BaseServiceProvider
             return new DropTables();
         });
         $this->app->singleton('command.migrate.single', function ($app) {
-            return new MigrateSingle(new Migrator($app['migration.repository']));
+            return new MigrateSingle(
+                new Migrator($app['migration.repository'], $app['db'], $app['files'])
+            );
         });
 
         $this->commands([

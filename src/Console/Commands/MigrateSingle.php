@@ -17,7 +17,7 @@ class MigrateSingle extends MigrateCommand
     /**
      * @var string
      */
-    protected $signature = 'migrate:one {file : The file of migration to be executed.}
+    protected $signature = 'migrate:single {file : The file of migration to be executed.}
         {--database= : The database connection to use.}
         {--force : Force the operation to run when in production.}
         {--pretend : Dump the SQL queries that would be run.}';
@@ -48,8 +48,12 @@ class MigrateSingle extends MigrateCommand
 
         $this->prepareDatabase();
 
-        $this->migrator->run($this->argument('file'), [
-            'pretend' => $this->option('pretend'),
-        ]);
+        $file = $this->getMigrationPath().'/'.$this->argument('file');
+
+        $this->migrator->run($file, ['pretend' => $this->option('pretend')]);
+
+        foreach ($this->migrator->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
     }
 }
