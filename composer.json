@@ -1,0 +1,19 @@
+{
+    "name": "mcmatters/laravel-db-commands",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Borzyonok",
+            "email": "dima.matters@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "5.*",
+        "illuminate/database": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "McMatters\\LaravelDbCommands\\": "src/"
+        }
+    }
+}
