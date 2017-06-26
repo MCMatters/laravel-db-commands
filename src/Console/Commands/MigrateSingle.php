@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace McMatters\LaravelDbCommands\Console\Commands;
+namespace McMatters\DbCommands\Console\Commands;
 
 use Illuminate\Database\Console\Migrations\MigrateCommand;
-use McMatters\LaravelDbCommands\Extenders\Database\Migrator;
+use McMatters\DbCommands\Extenders\Database\Migrator;
 
 /**
  * Class MigrateSingle
  *
- * @package McMatters\LaravelDbCommands\Console\Commands
+ * @package McMatters\DbCommands\Console\Commands
  */
 class MigrateSingle extends MigrateCommand
 {

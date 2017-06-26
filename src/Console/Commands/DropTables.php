@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace McMatters\LaravelDbCommands\Console\Commands;
+namespace McMatters\DbCommands\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 /**
  * Class DropTables
  *
- * @package McMatters\LaravelDbCommands\Console\Commands
+ * @package McMatters\DbCommands\Console\Commands
  */
 class DropTables extends Command
 {

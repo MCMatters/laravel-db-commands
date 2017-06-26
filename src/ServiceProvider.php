@@ -2,17 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace McMatters\LaravelDbCommands;
+namespace McMatters\DbCommands;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use McMatters\LaravelDbCommands\Console\Commands\DropTables;
-use McMatters\LaravelDbCommands\Console\Commands\MigrateSingle;
-use McMatters\LaravelDbCommands\Extenders\Database\Migrator;
+use McMatters\DbCommands\Console\Commands\DropTables;
+use McMatters\DbCommands\Console\Commands\MigrateSingle;
+use McMatters\DbCommands\Extenders\Database\Migrator;
 
 /**
  * Class ServiceProvider
  *
- * @package McMatters\LaravelDbCommands
+ * @package McMatters\DbCommands
  */
 class ServiceProvider extends BaseServiceProvider
 {

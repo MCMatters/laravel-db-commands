@@ -9,11 +9,12 @@
     ],
     "require": {
         "illuminate/support": "5.*",
-        "illuminate/database": "5.*"
+        "illuminate/database": "5.*",
+        "illuminate/console": "5.*"
     },
     "autoload": {
         "psr-4": {
-            "McMatters\\LaravelDbCommands\\": "src/"
+            "McMatters\\DbCommands\\": "src/"
         }
     }
 }
