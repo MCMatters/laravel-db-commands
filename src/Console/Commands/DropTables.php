@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace McMatters\DbCommands\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -30,7 +31,7 @@ class DropTables extends Command
      */
     public function handle()
     {
-        if (!$this->isForced() && !$this->isLocalEnvironment()) {
+        if (!$this->isForced() && $this->isProduction()) {
             $this->error(
                 'This action can\'t be performed in non-local environment.
                     Please use --force option if you really want to proceed.'
@@ -59,8 +60,8 @@ class DropTables extends Command
     /**
      * @return bool
      */
-    protected function isLocalEnvironment(): bool
+    protected function isProduction(): bool
     {
-        return in_array(config('app.env'), ['production', 'live'], true);
+        return in_array(Config::get('app.env'), ['production', 'live'], true);
     }
 }

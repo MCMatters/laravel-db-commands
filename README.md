@@ -21,4 +21,4 @@ Include the service provider within your `config/app.php` file.
 Available commands:
 
 * `php artisan db:drop-tables` — drops all tables.
-* `php artisan migrate:single {file}` — migrate single migration by filename.
+* `php artisan migrate:single {"file" or "class"}` — migrate single migration by file or class name.
