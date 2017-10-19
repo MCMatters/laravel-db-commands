@@ -22,8 +22,8 @@ class MigrateSingle extends MigrateCommand
      * @var string
      */
     protected $signature = 'migrate:single
-        {--file : The file of migration to be executed.}
-        {--class : The class name of migration.}
+        {--file= : The file of migration to be executed.}
+        {--class= : The class name of migration.}
         {--database= : The database connection to use.}
         {--force : Force the operation to run when in production.}
         {--pretend : Dump the SQL queries that would be run.}';
@@ -44,11 +44,23 @@ class MigrateSingle extends MigrateCommand
     }
 
     /**
+     * Support for =< 5.4 versions.
+     *
+     * @return void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \RuntimeException
+     */
+    public function fire()
+    {
+        $this->handle();
+    }
+
+    /**
      * @return void
      * @throws FileNotFoundException
      * @throws RuntimeException
      */
-    public function fire()
+    public function handle()
     {
         if (!$this->confirmToProceed()) {
             return;

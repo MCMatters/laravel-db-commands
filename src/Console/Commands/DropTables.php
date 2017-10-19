@@ -28,6 +28,8 @@ class DropTables extends Command
 
     /**
      * Run command.
+     *
+     * @return void
      */
     public function handle()
     {
