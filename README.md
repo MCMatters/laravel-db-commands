@@ -8,11 +8,11 @@ Package with laravel database commands.
 composer require mcmatters/laravel-db-commands
 ```
 
-Include the service provider within your `config/app.php` file.
+If you don't use package discovering feature, then just include the service provider within your `config/app.php` file.
 
 ```php
 'providers' => [
-    McMatters\DbCommands\ServiceProvider::class,
+    McMatters\LaravelDbCommands\ServiceProvider::class,
 ]
 ```
 
@@ -22,3 +22,4 @@ Available commands:
 
 * `php artisan db:drop-tables` — drops all tables.
 * `php artisan migrate:single {"file" or "class"}` — migrate single migration by file or class name.
+* `php artisan migrate:drop-single {"file" or "class"}` — drop single migration by file or class name.

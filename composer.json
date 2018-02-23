@@ -15,7 +15,14 @@
     },
     "autoload": {
         "psr-4": {
-            "McMatters\\DbCommands\\": "src/"
+            "McMatters\\LaravelDbCommands\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "McMatters\\LaravelDbCommands\\ServiceProvider"
+            ]
         }
     }
 }

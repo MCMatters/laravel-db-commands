@@ -2,17 +2,18 @@
 
 declare(strict_types = 1);
 
-namespace McMatters\DbCommands;
+namespace McMatters\LaravelDbCommands;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use McMatters\DbCommands\Console\Commands\DropTables;
-use McMatters\DbCommands\Console\Commands\MigrateSingle;
-use McMatters\DbCommands\Extenders\Database\Migrator;
+use McMatters\LaravelDbCommands\Console\Commands\DropTables;
+use McMatters\LaravelDbCommands\Console\Commands\MigrateDropSingle;
+use McMatters\LaravelDbCommands\Console\Commands\MigrateSingle;
+use McMatters\LaravelDbCommands\Extensions\Database\Migrator;
 
 /**
  * Class ServiceProvider
  *
- * @package McMatters\DbCommands
+ * @package McMatters\LaravelDbCommands
  */
 class ServiceProvider extends BaseServiceProvider
 {
@@ -24,8 +25,15 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->singleton('command.db.drop-tables', function () {
             return new DropTables();
         });
+
         $this->app->singleton('command.migrate.single', function ($app) {
             return new MigrateSingle(
+                new Migrator($app['migration.repository'], $app['db'], $app['files'])
+            );
+        });
+
+        $this->app->singleton('command.migrate.drop-single', function ($app) {
+            return new MigrateDropSingle(
                 new Migrator($app['migration.repository'], $app['db'], $app['files'])
             );
         });
@@ -33,6 +41,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->commands([
             'command.db.drop-tables',
             'command.migrate.single',
+            'command.migrate.drop-single',
         ]);
     }
 }

@@ -2,20 +2,23 @@
 
 declare(strict_types = 1);
 
-namespace McMatters\DbCommands\Console\Commands;
+namespace McMatters\LaravelDbCommands\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use function reset;
 
 /**
  * Class DropTables
  *
- * @package McMatters\DbCommands\Console\Commands
+ * @package McMatters\LaravelDbCommands\Console\Commands
  */
 class DropTables extends Command
 {
+    use ConfirmableTrait;
+
     /**
      * @var string
      */
@@ -27,17 +30,22 @@ class DropTables extends Command
     protected $description = 'Drops all tables in the default configuration.';
 
     /**
-     * Run command.
+     * Support for =< 5.4 versions.
      *
+     * @return void
+     */
+    public function fire()
+    {
+        $this->handle();
+    }
+
+    /**
      * @return void
      */
     public function handle()
     {
-        if (!$this->isForced() && $this->isProduction()) {
-            $this->error(
-                'This action can\'t be performed in non-local environment.
-                    Please use --force option if you really want to proceed.'
-            );
+        if (!$this->confirmToProceed()) {
+            return;
         }
 
         Schema::disableForeignKeyConstraints();
@@ -47,23 +55,5 @@ class DropTables extends Command
         }
 
         Schema::enableForeignKeyConstraints();
-    }
-
-    /**
-     * Check force mode.
-     *
-     * @return bool
-     */
-    protected function isForced(): bool
-    {
-        return null !== $this->option('force');
-    }
-
-    /**
-     * @return bool
-     */
-    protected function isProduction(): bool
-    {
-        return in_array(Config::get('app.env'), ['production', 'live'], true);
     }
 }

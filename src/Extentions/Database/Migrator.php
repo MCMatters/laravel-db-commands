@@ -2,14 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace McMatters\DbCommands\Extenders\Database;
+namespace McMatters\LaravelDbCommands\Extensions\Database;
 
 use Illuminate\Database\Migrations\Migrator as BaseMigrator;
+use const PATHINFO_FILENAME;
+use function pathinfo;
 
 /**
  * Class Migrator
  *
- * @package McMatters\DbCommands\Extenders\Database
+ * @package McMatters\LaravelDbCommands\Extensions\Database
  */
 class Migrator extends BaseMigrator
 {
@@ -20,6 +22,6 @@ class Migrator extends BaseMigrator
      */
     public function getMigrationFiles($file): array
     {
-        return [$file];
+        return [pathinfo($file, PATHINFO_FILENAME) => $file];
     }
 }
