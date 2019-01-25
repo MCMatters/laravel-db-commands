@@ -7,7 +7,7 @@ namespace McMatters\LaravelDbCommands\Console\Commands;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Migrations\MigrateCommand;
 use McMatters\LaravelDbCommands\Console\Commands\Traits\MigrateTrait;
-use McMatters\LaravelDbCommands\Extensions\Database\Migrator;
+use McMatters\LaravelDbCommands\Extentions\Database\Migrator;
 use RuntimeException;
 
 /**

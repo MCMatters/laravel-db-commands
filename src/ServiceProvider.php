@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use McMatters\LaravelDbCommands\Console\Commands\DropTables;
 use McMatters\LaravelDbCommands\Console\Commands\MigrateDropSingle;
 use McMatters\LaravelDbCommands\Console\Commands\MigrateSingle;
-use McMatters\LaravelDbCommands\Extensions\Database\Migrator;
+use McMatters\LaravelDbCommands\Extentions\Database\Migrator;
 
 /**
  * Class ServiceProvider
