@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace McMatters\LaravelDbCommands\Console\Commands;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Migrations\MigrateCommand;
 use McMatters\LaravelDbCommands\Console\Commands\Traits\MigrateTrait;
 use McMatters\LaravelDbCommands\Extensions\Database\Migrator;
-use RuntimeException;
 
 /**
  * Class MigrateSingle
@@ -37,7 +35,7 @@ class MigrateSingle extends MigrateCommand
     /**
      * MigrateSingle constructor.
      *
-     * @param Migrator $migrator
+     * @param \McMatters\LaravelDbCommands\Extensions\Database\Migrator $migrator
      */
     public function __construct(Migrator $migrator)
     {
@@ -48,8 +46,9 @@ class MigrateSingle extends MigrateCommand
      * Support for =< 5.4 versions.
      *
      * @return void
-     * @throws FileNotFoundException
-     * @throws RuntimeException
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \RuntimeException
      */
     public function fire()
     {
@@ -58,8 +57,9 @@ class MigrateSingle extends MigrateCommand
 
     /**
      * @return void
-     * @throws FileNotFoundException
-     * @throws RuntimeException
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \RuntimeException
      */
     public function handle()
     {

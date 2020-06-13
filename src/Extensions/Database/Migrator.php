@@ -1,12 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace McMatters\LaravelDbCommands\Extensions\Database;
 
 use Illuminate\Database\Migrations\Migrator as BaseMigrator;
-use const PATHINFO_FILENAME;
+
 use function pathinfo;
+
+use const PATHINFO_FILENAME;
 
 /**
  * Class Migrator

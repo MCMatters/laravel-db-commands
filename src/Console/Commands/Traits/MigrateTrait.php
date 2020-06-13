@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace McMatters\LaravelDbCommands\Console\Commands\Traits;
 
@@ -8,8 +8,10 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use RuntimeException;
-use const null;
+
 use function glob, file_exists;
+
+use const null;
 
 /**
  * Trait MigrateTrait
@@ -20,7 +22,8 @@ trait MigrateTrait
 {
     /**
      * @return string
-     * @throws FileNotFoundException
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function getMigrationFile(): string
     {
@@ -57,7 +60,8 @@ trait MigrateTrait
 
     /**
      * @return void
-     * @throws RuntimeException
+     *
+     * @throws \RuntimeException
      */
     protected function checkRequirements()
     {

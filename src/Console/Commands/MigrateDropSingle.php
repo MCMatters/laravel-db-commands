@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace McMatters\LaravelDbCommands\Console\Commands;
 
 use Illuminate\Console\ConfirmableTrait;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 use McMatters\LaravelDbCommands\Console\Commands\Traits\MigrateTrait;
 use McMatters\LaravelDbCommands\Extensions\Database\Migrator;
-use RuntimeException;
-use const false;
+
 use function count, strpos;
+
+use const false;
 
 /**
  * Class MigrateDropSingle
@@ -20,7 +20,8 @@ use function count, strpos;
  */
 class MigrateDropSingle extends BaseCommand
 {
-    use ConfirmableTrait, MigrateTrait;
+    use ConfirmableTrait;
+    use MigrateTrait;
 
     /**
      * @var string
@@ -38,14 +39,14 @@ class MigrateDropSingle extends BaseCommand
     protected $description = 'Drop the single database migration';
 
     /**
-     * @var Migrator
+     * @var \McMatters\LaravelDbCommands\Extensions\Database\Migrator
      */
     protected $migrator;
 
     /**
      * MigrateDropSingle constructor.
      *
-     * @param Migrator $migrator
+     * @param \McMatters\LaravelDbCommands\Extensions\Database\Migrator $migrator
      */
     public function __construct(Migrator $migrator)
     {
@@ -58,8 +59,9 @@ class MigrateDropSingle extends BaseCommand
      * Support for =< 5.4 versions.
      *
      * @return void
-     * @throws FileNotFoundException
-     * @throws RuntimeException
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \RuntimeException
      */
     public function fire()
     {
@@ -68,8 +70,9 @@ class MigrateDropSingle extends BaseCommand
 
     /**
      * @return void
-     * @throws FileNotFoundException
-     * @throws RuntimeException
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \RuntimeException
      */
     public function handle()
     {
@@ -82,7 +85,7 @@ class MigrateDropSingle extends BaseCommand
         $this->migrator->rollback(
             $this->getMigrationFile(),
             [
-                'step'    => count($this->migrator->getRepository()->getRan()),
+                'step' => count($this->migrator->getRepository()->getRan()),
                 'pretend' => $this->option('pretend'),
             ]
         );
