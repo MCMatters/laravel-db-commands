@@ -69,13 +69,12 @@ class MigrateSingle extends MigrateCommand
 
         $this->checkRequirements();
         $this->prepareDatabase();
+        $this->setMigratorOutput();
 
         $file = $this->getMigrationFile();
 
         $this->migrator->run($file, ['pretend' => $this->option('pretend')]);
 
-        foreach ($this->migrator->getNotes() as $note) {
-            $this->output->writeln($note);
-        }
+        $this->writeMigratorNotes();
     }
 }

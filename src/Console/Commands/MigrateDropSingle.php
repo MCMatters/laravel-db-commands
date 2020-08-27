@@ -81,6 +81,7 @@ class MigrateDropSingle extends BaseCommand
         }
 
         $this->checkRequirements();
+        $this->setMigratorOutput();
 
         $this->migrator->rollback(
             $this->getMigrationFile(),
@@ -90,10 +91,8 @@ class MigrateDropSingle extends BaseCommand
             ]
         );
 
-        foreach ($this->migrator->getNotes() as $note) {
-            if (strpos($note, 'Migration not found') === false) {
-                $this->output->writeln($note);
-            }
-        }
+        $this->writeMigratorNotes(static function ($note) {
+            return strpos($note, 'Migration not found') === false;
+        });
     }
 }
